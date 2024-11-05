@@ -1,0 +1,12 @@
+if sheet_names:
+        # Lire seulement les feuilles spécifiées
+        excel_data = pd.read_excel(file_path, sheet_name=sheet_names)
+    else:
+        # Lire toutes les feuilles
+        excel_data = pd.read_excel(file_path, sheet_name=None)
+        
+    for sheet_name, df in excel_data.items():
+        # Créer une variable dynamique pour chaque DataFrame
+        globals()[sheet_name] = df
+        print(f"DataFrame created for sheet '{sheet_name}':")
+        print(df.head())
