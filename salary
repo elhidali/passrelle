@@ -1,0 +1,23 @@
+# Salaires actuels des employés
+salaires = [3000, 3200, 2900, 3100, 2800]
+
+# Enveloppe à répartir
+enveloppe = 10000
+
+def repartir_enveloppe(salaires, enveloppe):
+    total_difference = sum(max(salaires) - salaire for salaire in salaires)
+    mise_a_jour_salaires = [0] * len(salaires)
+
+    for i, salaire in enumerate(salaires):
+        difference = max(salaires) - salaire
+        ajustement = (difference / total_difference) * enveloppe
+        mise_a_jour_salaires[i] = salaire + ajustement
+
+    return mise_a_jour_salaires
+
+# Calcul des nouveaux salaires
+nouveaux_salaires = repartir_enveloppe(salaires, enveloppe)
+
+# Affichage des résultats
+for i, (ancien, nouveau) in enumerate(zip(salaires, nouveaux_salaires)):
+    print(f"Salaire initial de l'employé {i+1}: {ancien}€, nouveau salaire: {nouveau:.2f}€")
